@@ -5,37 +5,30 @@ editor: visual
 ---
 
 ## Packages
-
 ```{r}
 library(readr)
-
 library(dplyr)
-
 library(ggplot2)
-
 library(plotly)
 
 ```
 
 ## Data Import
-
 ```{r}
 encounters <- read_csv("encounters.csv")
 ```
 
 ## Data Cleaning
-
 ```{r}
 encounters_clean <- encounters %>%
- filter(START >= "1990-12-31 18:00:00" & START <= "2040-01-01 00:00:00") %>%
- filter(STOP >= 
- "1990-12-31 18:00:00" & STOP <= "2040-01-01 00:00:00") %>%
- filter(ENCOUNTERCLASS %in% c("emergency", 
-"inpatient", "outpatient", "urgentcare"))
+ filter(START >= "1990-12-31 18:00:00" & 
+          START <= "2040-01-01 00:00:00") %>%
+ filter(STOP >= "1990-12-31 18:00:00" & 
+          STOP <= "2040-01-01 00:00:00") %>%
+ filter(ENCOUNTERCLASS %in% c("emergency", "inpatient", "outpatient", "urgentcare"))
 ```
 
 ## Data Visualization
-
 ```{r}
  ggplot(encounters_clean) +
  aes(x = ENCOUNTERCLASS, y = TOTAL_CLAIM_COST) +
